@@ -74,9 +74,9 @@
 			} 
 			else {
 				if ($intIndex == 1) 
-					echo "Percent not informed. 10.0% considered.\r\nNext time try type an integer value after PHP file.\r\n";
+					echo "'Percent' not informed. 10.0% considered.\r\nNext time try type an integer value after PHP file.\r\n";
 				elseif ($intIndex == 2)
-					echo "Check only verified coins not informed. true considered.\r\nNext time try type 'Y' or 'N' value after PHP file.\r\n\r\n";
+					echo "'Check only verified coins' not informed. 'Y' considered.\r\nNext time try type 'Y' or 'N' value after PHP file.\r\n\r\n";
 
 				return false;
 			}
@@ -109,6 +109,10 @@
 				$intMinPercent === false ? 10 : $intMinPercent;
 				$blnIgnorePreCheckedShitCoins = $this->commandLineArgs(2);
 				$blnIgnorePreCheckedShitCoins === false ? true : $blnIgnorePreCheckedShitCoins;
+			}
+			else {
+				$intMinPercent = isset($_GET["percent"]) ? intval($_GET["percent"]) : $intMinPercent;
+				$blnIgnorePreCheckedShitCoins = isset($_GET["gcoin"]) ? boolval($_GET["gcoin"] == 'N') : $blnIgnorePreCheckedShitCoins;
 			}
 
 			// Get all coins existent in all markets
