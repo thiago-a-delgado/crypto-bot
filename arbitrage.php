@@ -3,6 +3,11 @@
 	require("classes/api/CryptoCompareApi.class.php");
 	require("classes/bot/CryptoCompareBot.class.php");
 
+	/**
+	* Class to check the price difference between the altcoins markets.
+	* @author Thiago Delgado - Codificar
+	*/
+
 	class Arbitrage {
 		
 		protected $objCryptoCompareBot;
@@ -18,6 +23,6 @@
 	}
 
 	$objArbitrage = new Arbitrage();
-	$objArbitrage->showPossibleArbitrage(5, false);
+	$objArbitrage->showPossibleArbitrage(10, false);
 
 ?>

@@ -1,5 +1,10 @@
 <?php
 
+	/**
+	* Class to connect to CryptoCompare API and check data into altcoin markets.
+	* @author Thiago Delgado - Codificar
+	*/
+
 	class CryptoCompareApi {
 
 		protected $strMinApiUrl = "https://min-api.cryptocompare.com/data";
@@ -61,17 +66,20 @@
 		}
 		
 		public function getPrice($strFrom, $strTo) {
-			$objPriceArray = $this->retrieveJSON($this->strMinApiUrl . "/price?fsym=" . strtoupper($strFrom) . "&tsyms=" . strtoupper($strTo));
+			$strUrl = "/price?fsym=" . urlencode(strtoupper($strFrom)) . "&tsyms=" . urlencode(strtoupper($strTo));
+			$objPriceArray = $this->retrieveJSON($this->strMinApiUrl . $strUrl);
 			return $objPriceArray;
 		}
 
 		public function getCoinSnapShot($strFrom, $strTo) {
-			$objSnapShotArray = $this->retrieveJSON($this->strPublicApiUrl . "/coinsnapshot/?fsym=" . strtoupper($strFrom) . "&tsym=" . strtoupper($strTo));
+			$strUrl = "/coinsnapshot/?fsym=" . urlencode(strtoupper($strFrom)) . "&tsym=" . urlencode(strtoupper($strTo));
+			$objSnapShotArray = $this->retrieveJSON($this->strPublicApiUrl . $strUrl);
 			return $objSnapShotArray;
 		}
 
 		public function getCoinList() {
-			$objCoinListArray = $this->retrieveJSON($this->strPublicApiUrl . "/coinlist/");
+			$strUrl = urlencode("/coinlist/");
+			$objCoinListArray = $this->retrieveJSON($this->strPublicApiUrl . $strUrl);
 			return $objCoinListArray;
 		}		
 
